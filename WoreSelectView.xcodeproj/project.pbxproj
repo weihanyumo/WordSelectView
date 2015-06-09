@@ -1,0 +1,454 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B4CBD3D11B26D2CB00F1C628 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3D01B26D2CB00F1C628 /* main.m */; };
+		B4CBD3D41B26D2CC00F1C628 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3D31B26D2CC00F1C628 /* AppDelegate.m */; };
+		B4CBD3D71B26D2CC00F1C628 /* WoreSelectView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3D51B26D2CC00F1C628 /* WoreSelectView.xcdatamodeld */; };
+		B4CBD3DA1B26D2CC00F1C628 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3D91B26D2CC00F1C628 /* ViewController.m */; };
+		B4CBD3DD1B26D2CC00F1C628 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4CBD3DB1B26D2CC00F1C628 /* Main.storyboard */; };
+		B4CBD3DF1B26D2CC00F1C628 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4CBD3DE1B26D2CC00F1C628 /* Images.xcassets */; };
+		B4CBD3E21B26D2CC00F1C628 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CBD3E01B26D2CC00F1C628 /* LaunchScreen.xib */; };
+		B4CBD3EE1B26D2CC00F1C628 /* WoreSelectViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3ED1B26D2CC00F1C628 /* WoreSelectViewTests.m */; };
+		B4CBD3F91B26D31800F1C628 /* WordSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4CBD3F81B26D31800F1C628 /* WordSelectView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B4CBD3E81B26D2CC00F1C628 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B4CBD3C31B26D2CB00F1C628 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B4CBD3CA1B26D2CB00F1C628;
+			remoteInfo = WoreSelectView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B4CBD3CB1B26D2CB00F1C628 /* WoreSelectView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WoreSelectView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CBD3CF1B26D2CB00F1C628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4CBD3D01B26D2CB00F1C628 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B4CBD3D21B26D2CB00F1C628 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B4CBD3D31B26D2CC00F1C628 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B4CBD3D61B26D2CC00F1C628 /* WoreSelectView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WoreSelectView.xcdatamodel; sourceTree = "<group>"; };
+		B4CBD3D81B26D2CC00F1C628 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B4CBD3D91B26D2CC00F1C628 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B4CBD3DC1B26D2CC00F1C628 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B4CBD3DE1B26D2CC00F1C628 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B4CBD3E11B26D2CC00F1C628 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		B4CBD3E71B26D2CC00F1C628 /* WoreSelectViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WoreSelectViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CBD3EC1B26D2CC00F1C628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4CBD3ED1B26D2CC00F1C628 /* WoreSelectViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WoreSelectViewTests.m; sourceTree = "<group>"; };
+		B4CBD3F71B26D31800F1C628 /* WordSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordSelectView.h; sourceTree = "<group>"; };
+		B4CBD3F81B26D31800F1C628 /* WordSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordSelectView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B4CBD3C81B26D2CB00F1C628 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4CBD3E41B26D2CC00F1C628 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B4CBD3C21B26D2CB00F1C628 = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3CD1B26D2CB00F1C628 /* WoreSelectView */,
+				B4CBD3EA1B26D2CC00F1C628 /* WoreSelectViewTests */,
+				B4CBD3CC1B26D2CB00F1C628 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B4CBD3CC1B26D2CB00F1C628 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3CB1B26D2CB00F1C628 /* WoreSelectView.app */,
+				B4CBD3E71B26D2CC00F1C628 /* WoreSelectViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4CBD3CD1B26D2CB00F1C628 /* WoreSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3F71B26D31800F1C628 /* WordSelectView.h */,
+				B4CBD3F81B26D31800F1C628 /* WordSelectView.m */,
+				B4CBD3D21B26D2CB00F1C628 /* AppDelegate.h */,
+				B4CBD3D31B26D2CC00F1C628 /* AppDelegate.m */,
+				B4CBD3D81B26D2CC00F1C628 /* ViewController.h */,
+				B4CBD3D91B26D2CC00F1C628 /* ViewController.m */,
+				B4CBD3DB1B26D2CC00F1C628 /* Main.storyboard */,
+				B4CBD3DE1B26D2CC00F1C628 /* Images.xcassets */,
+				B4CBD3E01B26D2CC00F1C628 /* LaunchScreen.xib */,
+				B4CBD3D51B26D2CC00F1C628 /* WoreSelectView.xcdatamodeld */,
+				B4CBD3CE1B26D2CB00F1C628 /* Supporting Files */,
+			);
+			path = WoreSelectView;
+			sourceTree = "<group>";
+		};
+		B4CBD3CE1B26D2CB00F1C628 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3CF1B26D2CB00F1C628 /* Info.plist */,
+				B4CBD3D01B26D2CB00F1C628 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4CBD3EA1B26D2CC00F1C628 /* WoreSelectViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3ED1B26D2CC00F1C628 /* WoreSelectViewTests.m */,
+				B4CBD3EB1B26D2CC00F1C628 /* Supporting Files */,
+			);
+			path = WoreSelectViewTests;
+			sourceTree = "<group>";
+		};
+		B4CBD3EB1B26D2CC00F1C628 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B4CBD3EC1B26D2CC00F1C628 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B4CBD3CA1B26D2CB00F1C628 /* WoreSelectView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4CBD3F11B26D2CC00F1C628 /* Build configuration list for PBXNativeTarget "WoreSelectView" */;
+			buildPhases = (
+				B4CBD3C71B26D2CB00F1C628 /* Sources */,
+				B4CBD3C81B26D2CB00F1C628 /* Frameworks */,
+				B4CBD3C91B26D2CB00F1C628 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WoreSelectView;
+			productName = WoreSelectView;
+			productReference = B4CBD3CB1B26D2CB00F1C628 /* WoreSelectView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B4CBD3E61B26D2CC00F1C628 /* WoreSelectViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B4CBD3F41B26D2CC00F1C628 /* Build configuration list for PBXNativeTarget "WoreSelectViewTests" */;
+			buildPhases = (
+				B4CBD3E31B26D2CC00F1C628 /* Sources */,
+				B4CBD3E41B26D2CC00F1C628 /* Frameworks */,
+				B4CBD3E51B26D2CC00F1C628 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4CBD3E91B26D2CC00F1C628 /* PBXTargetDependency */,
+			);
+			name = WoreSelectViewTests;
+			productName = WoreSelectViewTests;
+			productReference = B4CBD3E71B26D2CC00F1C628 /* WoreSelectViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B4CBD3C31B26D2CB00F1C628 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = dhd;
+				TargetAttributes = {
+					B4CBD3CA1B26D2CB00F1C628 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					B4CBD3E61B26D2CC00F1C628 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = B4CBD3CA1B26D2CB00F1C628;
+					};
+				};
+			};
+			buildConfigurationList = B4CBD3C61B26D2CB00F1C628 /* Build configuration list for PBXProject "WoreSelectView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B4CBD3C21B26D2CB00F1C628;
+			productRefGroup = B4CBD3CC1B26D2CB00F1C628 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B4CBD3CA1B26D2CB00F1C628 /* WoreSelectView */,
+				B4CBD3E61B26D2CC00F1C628 /* WoreSelectViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B4CBD3C91B26D2CB00F1C628 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4CBD3DD1B26D2CC00F1C628 /* Main.storyboard in Resources */,
+				B4CBD3E21B26D2CC00F1C628 /* LaunchScreen.xib in Resources */,
+				B4CBD3DF1B26D2CC00F1C628 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4CBD3E51B26D2CC00F1C628 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B4CBD3C71B26D2CB00F1C628 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4CBD3D71B26D2CC00F1C628 /* WoreSelectView.xcdatamodeld in Sources */,
+				B4CBD3D41B26D2CC00F1C628 /* AppDelegate.m in Sources */,
+				B4CBD3DA1B26D2CC00F1C628 /* ViewController.m in Sources */,
+				B4CBD3F91B26D31800F1C628 /* WordSelectView.m in Sources */,
+				B4CBD3D11B26D2CB00F1C628 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4CBD3E31B26D2CC00F1C628 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4CBD3EE1B26D2CC00F1C628 /* WoreSelectViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B4CBD3E91B26D2CC00F1C628 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B4CBD3CA1B26D2CB00F1C628 /* WoreSelectView */;
+			targetProxy = B4CBD3E81B26D2CC00F1C628 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B4CBD3DB1B26D2CC00F1C628 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4CBD3DC1B26D2CC00F1C628 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B4CBD3E01B26D2CC00F1C628 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4CBD3E11B26D2CC00F1C628 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B4CBD3EF1B26D2CC00F1C628 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B4CBD3F01B26D2CC00F1C628 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4CBD3F21B26D2CC00F1C628 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WoreSelectView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B4CBD3F31B26D2CC00F1C628 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WoreSelectView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B4CBD3F51B26D2CC00F1C628 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WoreSelectViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WoreSelectView.app/WoreSelectView";
+			};
+			name = Debug;
+		};
+		B4CBD3F61B26D2CC00F1C628 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WoreSelectViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WoreSelectView.app/WoreSelectView";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B4CBD3C61B26D2CB00F1C628 /* Build configuration list for PBXProject "WoreSelectView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4CBD3EF1B26D2CC00F1C628 /* Debug */,
+				B4CBD3F01B26D2CC00F1C628 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B4CBD3F11B26D2CC00F1C628 /* Build configuration list for PBXNativeTarget "WoreSelectView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4CBD3F21B26D2CC00F1C628 /* Debug */,
+				B4CBD3F31B26D2CC00F1C628 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B4CBD3F41B26D2CC00F1C628 /* Build configuration list for PBXNativeTarget "WoreSelectViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4CBD3F51B26D2CC00F1C628 /* Debug */,
+				B4CBD3F61B26D2CC00F1C628 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B4CBD3D51B26D2CC00F1C628 /* WoreSelectView.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4CBD3D61B26D2CC00F1C628 /* WoreSelectView.xcdatamodel */,
+			);
+			currentVersion = B4CBD3D61B26D2CC00F1C628 /* WoreSelectView.xcdatamodel */;
+			path = WoreSelectView.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B4CBD3C31B26D2CB00F1C628 /* Project object */;
+}
