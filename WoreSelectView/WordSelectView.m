@@ -10,7 +10,8 @@
 #import <CoreText/CoreText.h>
 
 #define TEXT_FONT_SIZE_NORMAL 12
-#define REGULAR_DEFAULT @"(\\*)([a-zA-Z0-9])*([\\*])"
+//#define REGULAR_DEFAULT @"\\*([a-zA-Z0-9])*\\*"
+#define REGULAR_DEFAULT @"\\*[^*]+\\*"
 
 @implementation WordSelectRelationMap
 
@@ -20,15 +21,16 @@
 
 
 @property (nonatomic, strong) NSMutableArray                *m_arrRelations;
+@property (nonatomic, strong) NSMutableAttributedString     *m_stringShow;
+@property (nonatomic, assign) WordType                       m_typeForSelecte;
 @property (nonatomic, strong) UIFont                        *m_fontNormal;
 @property (nonatomic, strong) UIFont                        *m_fontSelected;
 @property (nonatomic, strong) UIColor                       *m_colorNormal;
-@property (nonatomic, strong) UIColor                       *m_colorSelected;
+@property (nonatomic, strong) UIColor                       *m_colorRight;
+@property (nonatomic, strong) UIColor                       *m_colorWrong;
 @property (nonatomic, strong) NSString                      *m_stringOri;
-@property (nonatomic, strong) NSMutableAttributedString     *m_stringShow;
-@property (nonatomic, assign) float                          m_lineSpace;
-@property (nonatomic, assign) WordType                       m_typeForSelecte;
 @property (nonatomic, assign) NSRange                        m_selectedRange;
+@property (nonatomic, strong) NSMutableArray                *m_arrSelectedRange;
 
 
 @end
@@ -43,9 +45,10 @@
         _m_fontNormal = [UIFont systemFontOfSize:TEXT_FONT_SIZE_NORMAL];
         _m_fontSelected = _m_fontNormal;
         _m_colorNormal = [UIColor blackColor];
-        _m_colorSelected = [UIColor redColor];
-        _m_arrRelations = [[NSMutableArray alloc] initWithCapacity:1];
-        _m_lineSpace = 8;
+        _m_colorRight = [UIColor redColor];
+        _m_colorWrong = [UIColor grayColor];
+        _m_arrRelations = [[NSMutableArray alloc] initWithCapacity:0];
+        _m_arrSelectedRange = [[NSMutableArray alloc] initWithCapacity:0];
         _m_typeForSelecte = type;
         _m_selectedRange = NSMakeRange(0, 0);
         
@@ -157,6 +160,160 @@
     return index;
 }
 
+- (void) showColorWithRangeMaps:(NSMutableArray*)arrRangeMaps
+{
+    for (int i=0; i<arrRangeMaps.count; i++)
+    {
+        WordSelectRelationMap *aMap = [arrRangeMaps objectAtIndex:i];
+        [self setColorWithaMap:aMap];
+    }
+}
+
+- (void) setColorWithaMap:(WordSelectRelationMap*)aMap
+{
+    if (self.m_typeForSelecte == aMap.m_type)
+    {
+        [self showColor:self.m_colorRight inRange:aMap.m_range];
+    }
+    else
+    {
+        [self showColor:self.m_colorWrong inRange:aMap.m_range];
+    }
+}
+
+- (void) showColor:(UIColor*)color inRange:(NSRange) range
+{
+    [self.m_stringShow addAttribute:(NSString*)kCTForegroundColorAttributeName value:(__bridge id)color.CGColor range:range];
+}
+
+- (void) addRang:(NSRange)range
+{
+    WordSelectRelationMap *aMap = [[WordSelectRelationMap alloc] init];
+    aMap.m_type = WordTypeNone;
+    aMap.m_range = range;
+    
+    if ([self isRangeRightSelect:range])
+    {
+        aMap.m_type = self.m_typeForSelecte;
+    }
+    
+    [self.m_arrSelectedRange addObject:aMap];
+}
+
+- (void) removeRange:(NSRange)range
+{
+    NSInteger index = [self getIndexOfRange:range];
+    if (INT32_MAX != index)
+    {
+        [self.m_arrSelectedRange removeObjectAtIndex:index];
+    }
+}
+
+-(NSInteger) getIndexOfRange:(NSRange)range
+{
+    float midOfRange = range.location + range.length/2;
+    for (NSInteger i = 0; i<self.m_arrSelectedRange.count; i++)
+    {
+        WordSelectRelationMap *aMap = [self.m_arrSelectedRange objectAtIndex:i];
+        NSRange aRange = aMap.m_range;
+        
+        if (midOfRange >= aRange.location && midOfRange <= aRange.location+aRange.length)
+        {
+            return i;
+        }
+    }
+    return INT32_MAX;
+}
+
+- (BOOL) isRangeHaveSelected:(NSRange)range
+{
+    float midOfRange = range.location + range.length/2;
+    for (int i = 0; i<self.m_arrSelectedRange.count; i++)
+    {
+        WordSelectRelationMap *aMap = [self.m_arrSelectedRange objectAtIndex:i];
+        NSRange aRange = aMap.m_range;
+        
+        if (midOfRange >= aRange.location && midOfRange <= aRange.location+aRange.length)
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+
+}
+
+- (BOOL) isRangeRightSelect:(NSRange)range
+{
+    float midOfRange = range.location + range.length/2;
+    for (NSInteger i = 0; i<self.m_arrRelations.count; i++)
+    {
+        WordSelectRelationMap *aMap = [self.m_arrRelations objectAtIndex:i];
+        NSRange aRange = aMap.m_range;
+        
+        if (midOfRange >= aRange.location && midOfRange <= aRange.location+aRange.length)
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (NSRange) getWordRangeAtIndex:(CFIndex) charIndex
+{
+    
+    if (charIndex == NSNotFound)
+    {
+        return NSMakeRange(0, 0);
+    }
+    
+    NSString *string = [self.m_stringShow string];;
+    NSRange end = [string rangeOfString:@" " options:0 range:NSMakeRange(charIndex, string.length - charIndex)];
+    NSRange front = [string rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, charIndex)];
+    
+    if (front.location == NSNotFound)
+    {
+        front.location = 0;
+    }
+    
+    if (end.location == NSNotFound)
+    {
+        end.location = string.length-1;
+    }
+    
+    NSRange wordRange = NSMakeRange(front.location, end.location-front.location);
+    
+    return wordRange;
+}
+
+- (void) removeAllColor
+{
+    for (int i=0; i<self.m_arrSelectedRange.count; i++)
+    {
+        WordSelectRelationMap *aMap = [self.m_arrSelectedRange objectAtIndex:i];
+
+        [self showColor:self.m_colorNormal inRange:aMap.m_range];
+    }
+    [self.m_arrSelectedRange removeAllObjects];
+    [self setNeedsDisplay];
+}
+- (void) showResult
+{
+    for (int i=0; i<self.m_arrSelectedRange.count; i++)
+    {
+        WordSelectRelationMap *aMap = [self.m_arrSelectedRange objectAtIndex:i];
+        if (self.m_typeForSelecte == aMap.m_type)
+        {
+            [self showColor:self.m_colorRight inRange:aMap.m_range];
+        }
+        else
+        {
+            [self showColor:self.m_colorWrong inRange:aMap.m_range];
+        }
+    }
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -166,7 +323,7 @@
     CGContextConcatCTM(context, textTran);
     
     float drawLineX = 0;
-    float drawLineY = 0;
+    float drawLineY = 50;
     CFRange lineRange = CFRangeMake(0,0);
     CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.m_stringShow);
     drawLineY = self.bounds.origin.y + self.bounds.size.height;
@@ -175,7 +332,7 @@
     while(drawFlag)
     {
         CFIndex testLineLength = CTTypesetterSuggestLineBreak(typeSetter,lineRange.location,self.bounds.size.width);
-check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
+    check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
         CTLineRef line = CTTypesetterCreateLine(typeSetter,lineRange);
         CFArrayRef runs = CTLineGetGlyphRuns(line);
         
@@ -215,86 +372,41 @@ check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
     CFRelease(typeSetter);
 }
 
-- (void)setWordColor:(UIColor*)color AtIndex:(CFIndex)charIndex
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (charIndex==NSNotFound)
-    {
-        [self removeColor];
-        return;
-    }
-    
-    NSString* string = [self.m_stringShow string];;
-    NSRange end = [string rangeOfString:@" " options:0 range:NSMakeRange(charIndex, string.length - charIndex)];
-    NSRange front = [string rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, charIndex)];
-    
-    if (front.location == NSNotFound)
-    {
-        front.location = 0;
-    }
-    
-    if (end.location == NSNotFound)
-    {
-        end.location = string.length-1;
-    }
-    
-    NSRange wordRange = NSMakeRange(front.location, end.location-front.location);
-    
-    if (front.location!=0) {
-        wordRange.location += 1;
-        wordRange.length -= 1;
-    }
-    [self.m_stringShow addAttribute:(NSString*)kCTForegroundColorAttributeName value:(__bridge id)color.CGColor range:wordRange];
-}
-
-- (void)removeColor
-{
-    if (self.m_selectedRange.length != 0)
-    {
-        [self.m_stringShow removeAttribute:(NSString*)kCTForegroundColorAttributeName range:self.m_selectedRange];
-    }
-    self.m_selectedRange = NSMakeRange(0, 0);
-}
-
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CFIndex charIndex = [self getCharacterIndexAtPoint:[touch locationInView:self]];
-    
+    NSRange range = NSMakeRange(0, 0);
     
     if (charIndex==NSNotFound)
     {
         return;
     }
+    range = [self getWordRangeAtIndex:charIndex];
+    if ([self isRangeHaveSelected:range])
+    {
+        [self removeRange:range];
+    }
+    else
+    {
+        [self addRang:range];
+    }
+    
     NSLog(@"selecte char at index:%ld", charIndex);
-    BOOL isSelectedRightWord = NO;
     
     for (int i=0; i<self.m_arrRelations.count; i++)
     {
         WordSelectRelationMap *aMap = [self.m_arrRelations objectAtIndex:i];
         if(aMap.m_type == self.m_typeForSelecte)
         {
-            NSRange range = aMap.m_range;
+            range = aMap.m_range;
             if (charIndex >= range.location && charIndex <= range.location+range.length)
             {
-                isSelectedRightWord = YES;
                 break;
             }
         }
     }
-    if (isSelectedRightWord)
-    {
-        [self setWordColor:self.m_colorSelected AtIndex:charIndex];
-    }
-    else
-    {
-        [self removeColor];
-    }
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(selectFinishedWithResult:)])
-    {
-        [_delegate selectFinishedWithResult:isSelectedRightWord];
-    }
-    
+
     [super touchesEnded:touches withEvent:event];
     
     [self setNeedsDisplay];

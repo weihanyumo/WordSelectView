@@ -13,8 +13,7 @@ typedef enum
     WordTypeNone = 0,
     WordTypeSubject,
     WordTypePredicate,
-    WordTypeAccusative
-    
+    WordTypeAccusative,
 }WordType;
 
 
@@ -42,6 +41,9 @@ typedef enum
 
 
 - (id) initWithFrame:(CGRect) frame andString:(NSString *)string forSelect:(WordType) type;
+
+- (void) showResult;
+- (void) removeAllColor;
 
 
 @end
