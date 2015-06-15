@@ -10,7 +10,6 @@
 #import <CoreText/CoreText.h>
 
 #define TEXT_FONT_SIZE_NORMAL 12
-//#define REGULAR_DEFAULT @"\\*([a-zA-Z0-9])*\\*"
 #define REGULAR_DEFAULT @"\\*[^*]+\\*"
 
 @implementation WordSelectRelationMap
@@ -20,17 +19,15 @@
 @interface WordSelectView()
 
 
-@property (nonatomic, strong) NSMutableArray                *m_arrRelations;
 @property (nonatomic, strong) NSMutableAttributedString     *m_stringShow;
-@property (nonatomic, assign) WordType                       m_typeForSelecte;
+@property (nonatomic, strong) NSMutableArray                *m_arrRelations;
+@property (nonatomic, strong) NSMutableArray                *m_arrSelectedRange;
 @property (nonatomic, strong) UIFont                        *m_fontNormal;
 @property (nonatomic, strong) UIFont                        *m_fontSelected;
 @property (nonatomic, strong) UIColor                       *m_colorNormal;
 @property (nonatomic, strong) UIColor                       *m_colorRight;
 @property (nonatomic, strong) UIColor                       *m_colorWrong;
-@property (nonatomic, strong) NSString                      *m_stringOri;
-@property (nonatomic, assign) NSRange                        m_selectedRange;
-@property (nonatomic, strong) NSMutableArray                *m_arrSelectedRange;
+@property (nonatomic, assign) WordType                       m_typeForSelecte;
 
 
 @end
@@ -50,7 +47,6 @@
         _m_arrRelations = [[NSMutableArray alloc] initWithCapacity:0];
         _m_arrSelectedRange = [[NSMutableArray alloc] initWithCapacity:0];
         _m_typeForSelecte = type;
-        _m_selectedRange = NSMakeRange(0, 0);
         
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
@@ -154,9 +150,14 @@
             {
                 CGPoint relativePoint = CGPointMake(point.x - lineOrigin.x, point.y - lineOrigin.y);
                 index = CTLineGetStringIndexForPosition(line, relativePoint);
+                break;
             }
         }
     }
+    CGPathRelease(path);
+    CFRelease(frame);
+    CFRelease(frameSetter);
+    
     return index;
 }
 
@@ -267,7 +268,8 @@
         return NSMakeRange(0, 0);
     }
     
-    NSString *string = [self.m_stringShow string];;
+    NSString *string = [self.m_stringShow string];
+    
     NSRange end = [string rangeOfString:@" " options:0 range:NSMakeRange(charIndex, string.length - charIndex)];
     NSRange front = [string rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, charIndex)];
     
@@ -275,13 +277,21 @@
     {
         front.location = 0;
     }
+    else
+    {
+        front.location += 1;
+    }
     
     if (end.location == NSNotFound)
     {
         end.location = string.length-1;
     }
+    else
+    {
+        end.location -= 1;
+    }
     
-    NSRange wordRange = NSMakeRange(front.location, end.location-front.location);
+    NSRange wordRange = NSMakeRange(front.location, end.location-front.location+1);
     
     return wordRange;
 }
@@ -297,6 +307,7 @@
     [self.m_arrSelectedRange removeAllObjects];
     [self setNeedsDisplay];
 }
+
 - (void) showResult
 {
     for (int i=0; i<self.m_arrSelectedRange.count; i++)
@@ -314,7 +325,7 @@
     [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect
+- (void) drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGAffineTransform textTran = CGAffineTransformIdentity;
@@ -322,67 +333,29 @@
     textTran = CGAffineTransformScale(textTran, 1.0, -1.0);
     CGContextConcatCTM(context, textTran);
     
-    float drawLineX = 0;
-    float drawLineY = 50;
-    CFRange lineRange = CFRangeMake(0,0);
-    CTTypesetterRef typeSetter = CTTypesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.m_stringShow);
-    drawLineY = self.bounds.origin.y + self.bounds.size.height;
-    BOOL drawFlag = YES;
+    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)self.m_stringShow);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, rect);
+    CTFrameRef frame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, self.m_stringShow.length), path, NULL);
     
-    while(drawFlag)
-    {
-        CFIndex testLineLength = CTTypesetterSuggestLineBreak(typeSetter,lineRange.location,self.bounds.size.width);
-    check:  lineRange = CFRangeMake(lineRange.location,testLineLength);
-        CTLineRef line = CTTypesetterCreateLine(typeSetter,lineRange);
-        CFArrayRef runs = CTLineGetGlyphRuns(line);
-        
-        CTRunRef lastRun = CFArrayGetValueAtIndex(runs, CFArrayGetCount(runs) - 1);
-        CGFloat lastRunAscent;
-        CGFloat lastRunDescent;
-        CGFloat leading;
-        CGFloat lastRunWidth  = CTRunGetTypographicBounds(lastRun, CFRangeMake(0,0), &lastRunAscent, &lastRunDescent, &leading);
-        CGFloat lastRunPointX = drawLineX + CTLineGetOffsetForStringIndex(line, CTRunGetStringRange(lastRun).location, NULL);
-        
-        if ((lastRunWidth + lastRunPointX) > self.bounds.size.width)
-        {
-            testLineLength--;
-            CFRelease(line);
-            goto check;
-        }
-        drawLineY -= (lastRunAscent + ABS(lastRunDescent) );
-        if (drawLineY<self.bounds.origin.y)
-        {
-            CFRelease(line);
-            break;
-        }
-        
-        drawLineX = CTLineGetPenOffsetForFlush(line,0,self.bounds.size.width);
-        CGContextSetTextPosition(context, drawLineX, drawLineY );
-        
-        CTLineDraw(line,context);
-        
-        if(lineRange.location + lineRange.length >= self.m_stringShow.length)
-        {
-            drawFlag = NO;
-        }
-        lineRange.location += lineRange.length;
-        CFRelease(line);
-    }
+    CTFrameDraw(frame, context);
     
-    CFRelease(typeSetter);
+    CGPathRelease(path);
+    CFRelease(frame);
+    CFRelease(frameSetter);
+    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
     CFIndex charIndex = [self getCharacterIndexAtPoint:[touch locationInView:self]];
-    NSRange range = NSMakeRange(0, 0);
     
     if (charIndex==NSNotFound)
     {
         return;
     }
-    range = [self getWordRangeAtIndex:charIndex];
+    NSRange range = [self getWordRangeAtIndex:charIndex];
     if ([self isRangeHaveSelected:range])
     {
         [self removeRange:range];

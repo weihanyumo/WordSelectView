@@ -13,7 +13,6 @@
 
 @interface ViewController ()<WordSelectViewDelegate>
 
-@property (nonatomic) NSRange highlightedRange;
 @property (nonatomic, strong) IBOutlet UIButton *btnShow;
 @property (nonatomic, strong) WordSelectView *m_wordView;
 
@@ -24,12 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.cStringUsingEncoding:NSUnicodeStringEncoding
     
     NSString *test = @"*this is* a word test, *dog* is dog and *cat* is cat, so what *i* am saying";
     _m_wordView = [[WordSelectView alloc] initWithFrame:CGRectMake(10, 20, self.view.frame.size.width-20, 300) andString:test forSelect:WordTypeSubject];
+    _m_wordView.backgroundColor = [UIColor lightGrayColor];
     _m_wordView.delegate = self;
     [self.view addSubview:_m_wordView];
+    
     
 }
 
@@ -62,5 +63,8 @@
         [self.btnShow setTitle:@"OK" forState:UIControlStateNormal];
     }
 }
+
+
+
 @end
 

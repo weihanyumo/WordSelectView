@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//type
 typedef enum
 {
     WordTypeNone = 0,
@@ -27,21 +28,16 @@ typedef enum
 
 //protocol
 @protocol WordSelectViewDelegate <NSObject>
-
 - (void) selectFinishedWithResult:(BOOL) isRightSelected;
-
 @end
-
 
 
 //view
 @interface WordSelectView : UIView
-
 @property(nonatomic,  weak) id <WordSelectViewDelegate> delegate;
 
 
 - (id) initWithFrame:(CGRect) frame andString:(NSString *)string forSelect:(WordType) type;
-
 - (void) showResult;
 - (void) removeAllColor;
 
